@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ByteBloom Digital Studio — Build. Grow. Bloom. | Neemuch, MP</title>
+<meta name="description" content="ByteBloom Digital Studio — Website Development, Branding, Social Media, Content Creation, AI Solutions &amp; Digital Marketing in Neemuch, Madhya Pradesh. Your vision, our creativity.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='6' width='6' height='6' rx='1.5' fill='%236C2BD9'/%3E%3Crect x='12' y='6' width='6' height='6' rx='1.5' fill='%236C2BD9' opacity='.5'/%3E%3Crect x='4' y='14' width='6' height='6' rx='1.5' fill='%236C2BD9' opacity='.5'/%3E%3Cpath d='M22 8h16c8 0 13 4.5 13 11 0 4-2 7-5.5 8.5C49.5 29 53 32.5 53 38c0 7-5.5 12-14 12H22V8zm10 8v10h5c4 0 6-2 6-5s-2-5-6-5h-5zm0 18v10h6c4.5 0 7-2 7-5s-2.5-5-7-5h-6z' fill='%232F6FED'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & TOKENS ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAF9FE;
+  --bg-alt:#F3EEFC;
+  --bg-alt-2:#EFE9FA;
+  --card:#FFFFFF;
+  --ink:#181025;
+  --ink-soft:#5B5470;
+  --ink-faint:#8C86A0;
+  --border:#E6E0F5;
+  --violet:#6C2BD9;
+  --blue:#2F6FED;
+  --pink:#A855F7;
+  --grad:linear-gradient(135deg,var(--violet),var(--blue));
+  --grad-diag:linear-gradient(120deg,#6C2BD9 0%,#8B3FE0 35%,#4A63EE 70%,#2F6FED 100%);
+  --grad-soft:linear-gradient(135deg,rgba(108,43,217,.10),rgba(47,111,237,.10));
+  --shadow-sm:0 8px 24px -12px rgba(76,29,149,.18);
+  --shadow-md:0 20px 50px -18px rgba(76,29,149,.28);
+  --shadow-lg:0 30px 80px -24px rgba(24,16,37,.35);
+  --radius-sm:12px;
+  --radius-md:20px;
+  --radius-lg:28px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:600;line-height:1.08;letter-spacing:-.01em}
+.container{width:100%;max-width:1180px;margin-inline:auto;padding-inline:24px}
+@media(min-width:640px){.container{padding-inline:40px}}
+
+::selection{background:var(--violet);color:#fff}
+:focus-visible{outline:2.5px solid var(--violet);outline-offset:3px;border-radius:4px}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--violet);
+}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--grad);border-radius:2px}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:15px 30px;border-radius:100px;
+  font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.95rem;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s;
+  white-space:nowrap;
+}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:var(--shadow-sm)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.btn-ghost{background:var(--card);color:var(--ink);border:1.5px solid var(--border)}
+.btn-ghost:hover{border-color:var(--violet);transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:#2c2140;transform:translateY(-3px)}
+
+/* ============ REVEAL ANIMATION ============ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in-view{opacity:1;transform:translateY(0)}
+.reveal-stagger > *{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal-stagger.in-view > *{opacity:1;transform:translateY(0)}
+.reveal-stagger.in-view > *:nth-child(1){transition-delay:.05s}
+.reveal-stagger.in-view > *:nth-child(2){transition-delay:.12s}
+.reveal-stagger.in-view > *:nth-child(3){transition-delay:.19s}
+.reveal-stagger.in-view > *:nth-child(4){transition-delay:.26s}
+.reveal-stagger.in-view > *:nth-child(5){transition-delay:.33s}
+.reveal-stagger.in-view > *:nth-child(6){transition-delay:.40s}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important;scroll-behavior:auto !important}
+}
+
+/* ============ NAV ============ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:18px 0;
+  transition:padding .35s var(--ease),background .35s var(--ease),box-shadow .35s var(--ease);
+}
+.nav.scrolled{padding:10px 0;background:rgba(250,249,254,.82);backdrop-filter:blur(14px) saturate(160%);box-shadow:0 1px 0 var(--border), 0 12px 30px -18px rgba(24,16,37,.15)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand svg{width:34px;height:34px;flex-shrink:0}
+.brand-text{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.12rem;letter-spacing:-.01em}
+.brand-text b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links a{font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:500;color:var(--ink-soft);position:relative;padding:4px 0;transition:color .25s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--grad);transition:width .3s var(--ease)}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.nav-cta .btn{padding:11px 22px;font-size:.86rem}
+.hamburger{display:none;flex-direction:column;gap:5px;width:26px;z-index:1100}
+.hamburger span{height:2px;width:100%;background:var(--ink);border-radius:2px;transition:transform .35s var(--ease),opacity .3s}
+.mobile-panel{
+  position:fixed;inset:0;background:var(--bg);z-index:1050;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px;
+  transform:translateY(-100%);transition:transform .5s var(--ease);
+}
+.mobile-panel.open{transform:translateY(0)}
+.mobile-panel a{font-family:'Fraunces',serif;font-size:1.7rem;font-weight:500}
+.mobile-panel .btn{margin-top:10px}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;
+  padding:150px 0 90px;
+  overflow:hidden;
+  background:
+    radial-gradient(560px 420px at 88% -6%, rgba(108,43,217,.13), transparent 65%),
+    radial-gradient(500px 380px at -6% 30%, rgba(47,111,237,.12), transparent 65%);
+}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.hero-copy h1{font-size:clamp(2.5rem,5.6vw,4.3rem);margin-top:18px}
+.hero-copy h1 em{font-style:italic;font-weight:500;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-copy p.lede{margin-top:22px;font-size:1.08rem;color:var(--ink-soft);max-width:520px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:36px}
+.hero-tags{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:44px}
+.hero-tags span{display:flex;align-items:center;gap:8px;font-family:'Space Grotesk',sans-serif;font-size:.82rem;color:var(--ink-soft);font-weight:500}
+.hero-tags span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--grad)}
+
+.hero-visual{position:relative;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
+.bloom-wrap{position:relative;width:100%;height:100%}
+.bloom-svg{width:100%;height:100%}
+.bloom-path{stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 2.6s var(--ease) forwards .3s}
+.bloom-petal{opacity:0;transform-origin:center;animation:bloomIn 1s var(--ease) forwards}
+.bloom-petal:nth-of-type(1){animation-delay:1.6s}
+.bloom-petal:nth-of-type(2){animation-delay:1.75s}
+.bloom-petal:nth-of-type(3){animation-delay:1.9s}
+.bloom-petal:nth-of-type(4){animation-delay:2.05s}
+.bloom-petal:nth-of-type(5){animation-delay:2.2s}
+.bloom-petal:nth-of-type(6){animation-delay:2.35s}
+.bloom-node{animation:pulse 3s ease-in-out infinite}
+.bloom-node:nth-of-type(odd){animation-delay:.6s}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes bloomIn{from{opacity:0;transform:scale(.2) rotate(-20deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes pulse{0%,100%{opacity:.55;r:3}50%{opacity:1;r:4.5}}
+
+.orbit-badge{
+  position:absolute;bottom:-6%;left:-8%;width:172px;height:172px;
+  animation:spin 26s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.orbit-badge-center{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:78px;height:78px;border-radius:50%;background:var(--grad);
+  display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-md);
+}
+.orbit-badge-center svg{width:36px;height:36px}
+.floaty{position:absolute;border-radius:var(--radius-md);background:var(--card);box-shadow:var(--shadow-md);padding:14px 18px;display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.82rem;border:1px solid var(--border)}
+.floaty svg{width:20px;height:20px;color:var(--violet)}
+.floaty-1{top:6%;right:-4%;animation:float1 6s ease-in-out infinite}
+.floaty-2{bottom:14%;right:6%;animation:float2 7s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(12px)}}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:60px}
+  .hero-visual{max-width:380px;margin-inline:auto}
+  .hero-copy p.lede{max-width:none}
+}
+
+/* ============ SECTION HEADS ============ */
+.section-head{max-width:640px}
+.section-head h2{font-size:clamp(2rem,4vw,2.9rem);margin-top:16px}
+.section-head p{margin-top:16px;color:var(--ink-soft);font-size:1.02rem}
+.section-head.center{margin-inline:auto;text-align:center}
+.section-head.center .eyebrow::before{display:none}
+section{padding:100px 0}
+@media(max-width:640px){section{padding:70px 0}}
+
+/* ============ SERVICES ============ */
+.services-grid{margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+@media(max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.services-grid{grid-template-columns:1fr}}
+.service-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:34px 28px;position:relative;overflow:hidden;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .45s;
+}
+.service-card::before{
+  content:"";position:absolute;inset:0;opacity:0;background:var(--grad-soft);transition:opacity .45s;
+}
+.service-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-md);border-color:transparent}
+.service-card:hover::before{opacity:1}
+.service-num{position:absolute;top:22px;right:26px;font-family:'Space Grotesk',sans-serif;font-size:.75rem;color:var(--ink-faint);font-weight:600}
+.service-icon{
+  width:58px;height:58px;border-radius:16px;background:var(--grad);
+  display:flex;align-items:center;justify-content:center;margin-bottom:22px;position:relative;z-index:1;
+  transition:transform .4s var(--ease);
+}
+.service-card:hover .service-icon{transform:rotate(-6deg) scale(1.06)}
+.service-icon svg{width:28px;height:28px;color:#fff}
+.service-card h3{position:relative;z-index:1;font-size:1.22rem;font-weight:600}
+.service-card p{position:relative;z-index:1;margin-top:10px;color:var(--ink-soft);font-size:.94rem}
+.service-bar{position:relative;z-index:1;margin-top:20px;height:4px;border-radius:4px;background:var(--bg-alt-2);overflow:hidden}
+.service-bar i{display:block;height:100%;width:0;background:var(--grad);border-radius:4px;transition:width 1.2s var(--ease)}
+.service-card.in-view .service-bar i{width:var(--fill)}
+
+/* ============ WHY / INFOGRAPHIC ============ */
+.why{background:var(--bg-alt);position:relative;overflow:hidden}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+@media(max-width:900px){.why-grid{grid-template-columns:1fr;gap:44px}}
+.why-list{margin-top:38px;display:flex;flex-direction:column;gap:4px}
+.why-item{
+  display:flex;align-items:center;gap:18px;padding:18px 6px;border-bottom:1px solid var(--border);
+}
+.why-item:last-child{border-bottom:none}
+.why-check{
+  width:32px;height:32px;border-radius:50%;background:var(--grad);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transform:scale(0);transition:transform .5s var(--ease);
+}
+.why-item.in-view .why-check{transform:scale(1)}
+.why-check svg{width:16px;height:16px;color:#fff}
+.why-item p{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:1.02rem}
+
+.growth-card{
+  background:var(--ink);border-radius:var(--radius-lg);padding:46px 40px;color:#fff;position:relative;overflow:hidden;
+}
+.growth-card::before{content:"";position:absolute;top:-40%;right:-30%;width:70%;height:70%;background:var(--grad);filter:blur(60px);opacity:.5;border-radius:50%}
+.growth-card p.script{font-family:'Fraunces',serif;font-style:italic;font-size:1.9rem;font-weight:500;position:relative;z-index:1}
+.growth-card .grad-underline{width:60px;height:3px;background:var(--grad);border-radius:3px;margin:18px 0 22px;position:relative;z-index:1}
+.growth-card p.body{position:relative;z-index:1;color:#C9C4DC;font-size:.98rem;max-width:420px}
+.growth-card p.body em{color:#fff;font-style:normal;font-weight:600}
+.growth-card .btn{margin-top:28px;position:relative;z-index:1}
+
+/* ============ PROCESS TIMELINE ============ */
+.timeline{margin-top:64px;position:relative}
+.timeline-track{position:absolute;top:26px;left:0;right:0;height:2px;background:var(--border);z-index:0}
+.timeline-track i{display:block;height:100%;width:0;background:var(--grad);transition:width 1.6s var(--ease)}
+.timeline.in-view .timeline-track i{width:100%}
+.timeline-steps{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+@media(max-width:800px){.timeline-steps{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.timeline-steps{grid-template-columns:1fr}}
+.tstep{display:flex;flex-direction:column;gap:16px}
+.tstep-dot{
+  width:52px;height:52px;border-radius:50%;background:var(--card);border:2px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--ink-faint);
+  transition:border-color .5s,color .5s,background .5s;
+}
+.timeline.in-view .tstep-dot{border-color:transparent;background:var(--grad);color:#fff;transition-delay:.5s}
+.tstep h4{font-size:1.08rem;font-weight:600;font-family:'Fraunces',serif}
+.tstep p{color:var(--ink-soft);font-size:.9rem}
+
+/* ============ PACKAGES ============ */
+.packages-grid{margin-top:56px;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:stretch}
+@media(max-width:1024px){.packages-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.packages-grid{grid-template-columns:1fr}}
+.pkg-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:34px 28px;display:flex;flex-direction:column;position:relative;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease);
+}
+.pkg-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-md)}
+.pkg-card.featured{border:1.5px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,var(--grad) border-box;box-shadow:var(--shadow-md);transform:translateY(-10px)}
+.pkg-ribbon{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;padding:6px 16px;border-radius:100px;box-shadow:var(--shadow-sm)}
+.pkg-icon{width:46px;height:46px;border-radius:12px;background:var(--grad-soft);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.pkg-icon svg{width:22px;height:22px;color:var(--violet)}
+.pkg-card h3{font-size:1.25rem}
+.pkg-card .pkg-sub{color:var(--ink-faint);font-size:.82rem;margin-top:4px;font-family:'Space Grotesk',sans-serif}
+.pkg-feats{margin-top:22px;display:flex;flex-direction:column;gap:11px;flex:1}
+.pkg-feats li{display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--ink-soft)}
+.pkg-feats svg{width:16px;height:16px;color:var(--violet);flex-shrink:0;margin-top:2px}
+.pkg-price{margin-top:26px;padding-top:22px;border-top:1px solid var(--border)}
+.pkg-price .amt{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.9rem}
+.pkg-price .amt sup{font-size:1rem;font-weight:600}
+.pkg-price .onwards{font-size:.72rem;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-left:4px}
+.pkg-card .btn{margin-top:20px;width:100%}
+
+.pkg-card.custom{background:var(--ink);color:#fff;border:none;justify-content:center}
+.pkg-card.custom .pkg-icon{background:var(--grad)}
+.pkg-card.custom .pkg-icon svg{color:#fff}
+.pkg-card.custom p{color:#C9C4DC;font-size:.92rem;margin-top:14px}
+.pkg-card.custom h3{color:#fff}
+
+/* ============ CONTACT ============ */
+.contact{
+  background:var(--ink);color:#fff;border-radius:var(--radius-lg);
+  padding:64px 50px;position:relative;overflow:hidden;
+}
+.contact::before{content:"";position:absolute;top:-30%;left:-10%;width:60%;height:80%;background:var(--grad);filter:blur(90px);opacity:.35}
+.contact::after{content:"";position:absolute;bottom:-40%;right:-10%;width:50%;height:80%;background:var(--blue);filter:blur(100px);opacity:.22}
+.contact-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:60px}
+@media(max-width:840px){.contact-grid{grid-template-columns:1fr;gap:40px}}
+.contact h2{font-size:clamp(1.9rem,4vw,2.6rem);color:#fff}
+.contact p.lede{color:#C9C4DC;margin-top:16px;max-width:420px}
+.contact-list{margin-top:34px;display:flex;flex-direction:column;gap:22px}
+.contact-list a,.contact-list div{display:flex;align-items:flex-start;gap:16px}
+.contact-list .cico{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .3s,transform .3s}
+.contact-list a:hover .cico{background:var(--grad);transform:translateY(-2px)}
+.contact-list .cico svg{width:20px;height:20px;color:#fff}
+.contact-list .clabel{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#8f89a8;font-weight:600;font-family:'Space Grotesk',sans-serif}
+.contact-list .cval{font-size:1rem;font-weight:500;margin-top:3px}
+.contact-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.map-frame{border-radius:var(--radius-md);overflow:hidden;border:1px solid rgba(255,255,255,.12);height:100%;min-height:340px;position:relative}
+.map-frame iframe{width:100%;height:100%;border:0;filter:grayscale(.15) contrast(1.05)}
+
+/* ============ FOOTER ============ */
+footer{padding:60px 0 34px}
+.footer-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:40px;padding-bottom:40px;border-bottom:1px solid var(--border)}
+.footer-brand p{color:var(--ink-soft);max-width:280px;margin-top:14px;font-size:.92rem}
+.footer-cols{display:flex;gap:60px;flex-wrap:wrap}
+.footer-col h5{font-family:'Space Grotesk',sans-serif;font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-faint);margin-bottom:16px}
+.footer-col a{display:block;font-size:.92rem;color:var(--ink-soft);margin-bottom:10px;transition:color .25s}
+.footer-col a:hover{color:var(--violet)}
+.footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center;padding-top:28px;font-size:.82rem;color:var(--ink-faint)}
+.socials{display:flex;gap:12px}
+.socials a{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all .3s}
+.socials a:hover{background:var(--grad);border-color:transparent}
+.socials a:hover svg{color:#fff}
+.socials svg{width:16px;height:16px;color:var(--ink-soft)}
+
+.back-top{
+  position:fixed;bottom:26px;right:26px;width:48px;height:48px;border-radius:50%;
+  background:var(--grad);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-md);
+  opacity:0;pointer-events:none;transform:translateY(10px);transition:all .35s var(--ease);z-index:900;
+}
+.back-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+.back-top svg{width:20px;height:20px;color:#fff}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="brand">
+      <svg viewBox="0 0 64 64"><defs><linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6C2BD9"/><stop offset="1" stop-color="#2F6FED"/></linearGradient></defs>
+        <g fill="url(#lg1)">
+          <rect x="4" y="6" width="6" height="6" rx="1.5"/>
+          <rect x="12" y="6" width="6" height="6" rx="1.5" opacity=".6"/>
+          <rect x="4" y="14" width="6" height="6" rx="1.5" opacity=".6"/>
+          <path d="M22 8h16c8 0 13 4.5 13 11 0 4-2 7-5.5 8.5C49.5 29 53 32.5 53 38c0 7-5.5 12-14 12H22V8zm10 8v10h5c4 0 6-2 6-5s-2-5-6-5h-5zm0 18v10h6c4.5 0 7-2 7-5s-2.5-5-7-5h-6z"/>
+        </g>
+      </svg>
+      <span class="brand-text">Byte<b>Bloom</b></span>
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#packages">Packages</a>
+      <a href="#why">Why Us</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="tel:+917389743567" class="btn btn-ghost" style="display:none">Call</a>
+      <a href="#contact" class="btn btn-primary">Get Started</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-panel" id="mobilePanel">
+  <a href="#services">Services</a>
+  <a href="#packages">Packages</a>
+  <a href="#why">Why Us</a>
+  <a href="#process">Process</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn-primary">Get Started</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Build · Grow · Bloom</span>
+      <h1 class="reveal in-view">We Build Brands.<br>We Grow Businesses.<br>We Create <em>Impact.</em></h1>
+      <p class="lede">ByteBloom Digital Studio helps businesses in Neemuch and beyond establish a powerful online presence — through creative design, smart strategy and thoughtful digital solutions.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Start Your Project</a>
+        <a href="#services" class="btn btn-ghost">Explore Services</a>
+      </div>
+      <div class="hero-tags">
+        <span>Websites</span><span>Branding</span><span>Social Media</span><span>AI Solutions</span><span>Marketing</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="bloom-wrap">
+        <svg class="bloom-svg" viewBox="0 0 400 400" fill="none">
+          <defs>
+            <linearGradient id="bloomGrad" x1="0" y1="0" x2="400" y2="400">
+              <stop offset="0" stop-color="#6C2BD9"/><stop offset="1" stop-color="#2F6FED"/>
+            </linearGradient>
+          </defs>
+          <!-- circuit traces -->
+          <g class="bloom-path" stroke="url(#bloomGrad)" stroke-width="2" stroke-linecap="round" fill="none" opacity=".55">
+            <path d="M200 200 L200 90 M200 200 L295 145 M200 200 L295 255 M200 200 L200 310 M200 200 L105 255 M200 200 L105 145"/>
+            <path d="M200 90 L200 50 M295 145 L330 125 M295 255 L330 275 M200 310 L200 350 M105 255 L70 275 M105 145 L70 125"/>
+          </g>
+          <g class="bloom-node" fill="url(#bloomGrad)">
+            <circle cx="200" cy="50" r="3.5"/><circle cx="330" cy="125" r="3.5"/><circle cx="330" cy="275" r="3.5"/>
+            <circle cx="200" cy="350" r="3.5"/><circle cx="70" cy="275" r="3.5"/><circle cx="70" cy="125" r="3.5"/>
+          </g>
+          <!-- bloom petals -->
+          <g fill="url(#bloomGrad)">
+            <ellipse class="bloom-petal" cx="200" cy="150" rx="20" ry="42" transform="rotate(0 200 200)" opacity=".92"/>
+            <ellipse class="bloom-petal" cx="200" cy="150" rx="20" ry="42" transform="rotate(60 200 200)" opacity=".92"/>
+            <ellipse class="bloom-petal" cx="200" cy="150" rx="20" ry="42" transform="rotate(120 200 200)" opacity=".92"/>
+            <ellipse class="bloom-petal" cx="200" cy="150" rx="20" ry="42" transform="rotate(180 200 200)" opacity=".92"/>
+            <ellipse class="bloom-petal" cx="200" cy="150" rx="20" ry="42" transform="rotate(240 200 200)" opacity=".92"/>
+            <ellipse class="bloom-petal" cx="200" cy="150" rx="20" ry="42" transform="rotate(300 200 200)" opacity=".92"/>
+          </g>
+          <circle cx="200" cy="200" r="16" fill="#fff"/>
+          <circle cx="200" cy="200" r="16" fill="url(#bloomGrad)" opacity=".9"/>
+        </svg>
+
+        <div class="floaty floaty-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 L4 14h6l-1 8 9-12h-6z"/></svg>
+          Fast &amp; Modern
+        </div>
+        <div class="floaty floaty-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-9.5-8.8C.7 8.4 2.3 4.7 6 4c2.2-.4 4 1 6 3.2C14 5 15.8 3.6 18 4c3.7.7 5.3 4.4 3.5 8.2C19 16.65 12 21 12 21z"/></svg>
+          Client-First
+        </div>
+      </div>
+
+      <div class="orbit-badge">
+        <svg viewBox="0 0 200 200" width="100%" height="100%">
+          <defs><path id="circlePath" d="M100,100 m-84,0 a84,84 0 1,1 168,0 a84,84 0 1,1 -168,0"/></defs>
+          <text font-family="Space Grotesk, sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.5" fill="#5B5470">
+            <textPath href="#circlePath" startOffset="0%">YOUR VISION · OUR CREATIVITY · YOUR SUCCESS · OUR MISSION · </textPath>
+          </text>
+        </svg>
+        <div class="orbit-badge-center">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="3.4"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Services</span>
+      <h2>Everything your brand needs<br>to show up and stand out.</h2>
+      <p>From your first line of code to your next viral post — one studio, every capability, working together toward one growth plan.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal" style="--fill:92%">
+        <span class="service-num">01</span>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 3 12l5 9M16 3l5 9-5 9"/></svg></div>
+        <h3>Website Development</h3>
+        <p>Modern, responsive and fast websites that represent your brand perfectly and turn visitors into customers.</p>
+        <div class="service-bar"><i></i></div>
+      </div>
+
+      <div class="service-card reveal" style="--fill:88%">
+        <span class="service-num">02</span>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg></div>
+        <h3>Branding &amp; Designing</h3>
+        <p>Logos, brand identity, banners and brochures — creative designs that make your business stand out.</p>
+        <div class="service-bar"><i></i></div>
+      </div>
+
+      <div class="service-card reveal" style="--fill:90%">
+        <span class="service-num">03</span>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="3"/><path d="M9 3.5V4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-.5M10.5 18.5h3"/></svg></div>
+        <h3>Social Media Management</h3>
+        <p>Content, strategy and scheduling to build your online presence and grow a loyal audience.</p>
+        <div class="service-bar"><i></i></div>
+      </div>
+
+      <div class="service-card reveal" style="--fill:85%">
+        <span class="service-num">04</span>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="M3 9h14M6 6l-1.5-3M11 6l1.5-3M17 10l4-2v8l-4-2"/></svg></div>
+        <h3>Content Creation</h3>
+        <p>Reels, posts, videos and graphics that engage your audience and boost your reach.</p>
+        <div class="service-bar"><i></i></div>
+      </div>
+
+      <div class="service-card reveal" style="--fill:87%">
+        <span class="service-num">05</span>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div>
+        <h3>AI Solutions &amp; Automation</h3>
+        <p>AI tools, chatbots and smart automation that save time and help your business grow faster.</p>
+        <div class="service-bar"><i></i></div>
+      </div>
+
+      <div class="service-card reveal" style="--fill:89%">
+        <span class="service-num">06</span>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a2 2 0 0 0 2 2h1l7 4V5l-7 4H5a2 2 0 0 0-2 2Z"/><path d="M17 8a5 5 0 0 1 0 8"/></svg></div>
+        <h3>Digital Marketing</h3>
+        <p>SEO, ads and data-driven campaigns that bring more traffic and generate real leads.</p>
+        <div class="service-bar"><i></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY CHOOSE US ============ -->
+<section id="why" class="why">
+  <div class="container">
+    <div class="why-grid">
+      <div class="reveal">
+        <span class="eyebrow">Why ByteBloom</span>
+        <h2>A studio that treats<br>your business like ours.</h2>
+        <div class="why-list">
+          <div class="why-item reveal">
+            <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+            <p>Creative &amp; innovative solutions</p>
+          </div>
+          <div class="why-item reveal">
+            <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+            <p>Quality work, delivered on time</p>
+          </div>
+          <div class="why-item reveal">
+            <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+            <p>Honest, affordable packages</p>
+          </div>
+          <div class="why-item reveal">
+            <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+            <p>Client satisfaction, always the goal</p>
+          </div>
+          <div class="why-item reveal">
+            <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+            <p>Support that doesn't end at delivery</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="growth-card reveal">
+        <p class="script">Let's Grow Together!</p>
+        <div class="grad-underline"></div>
+        <p class="body">Whether you're a startup, an established brand, or an individual with a big idea — we're here to turn it into <em>digital success.</em> Your growth is our priority.</p>
+        <a href="#contact" class="btn btn-primary">Start a Conversation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section id="process">
+  <div class="container">
+    <div class="section-head center reveal" style="margin-inline:auto">
+      <span class="eyebrow" style="justify-content:center">How We Work</span>
+      <h2>From first idea to a business<br>that's live, loud and growing.</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="timeline-track"><i></i></div>
+      <div class="timeline-steps">
+        <div class="tstep"><div class="tstep-dot">01</div><h4>Discover</h4><p>We learn your brand, goals and audience before a single pixel is placed.</p></div>
+        <div class="tstep"><div class="tstep-dot">02</div><h4>Design</h4><p>A look, voice and strategy crafted specifically for your vision.</p></div>
+        <div class="tstep"><div class="tstep-dot">03</div><h4>Develop</h4><p>We build, create and launch — fast, clean and fully responsive.</p></div>
+        <div class="tstep"><div class="tstep-dot">04</div><h4>Grow</h4><p>We stay on to support, optimize and scale with you, always.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PACKAGES ============ -->
+<section id="packages" class="why" style="background:var(--bg)">
+  <div class="container">
+    <div class="section-head center reveal" style="margin-inline:auto">
+      <span class="eyebrow" style="justify-content:center">Our Packages</span>
+      <h2>Simple pricing.<br>Serious results.</h2>
+      <p style="margin-inline:auto">Pick a starting point — every plan is built to flex as your business grows.</p>
+    </div>
+
+    <div class="packages-grid">
+      <div class="pkg-card reveal">
+        <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 L4 14h6l-1 8 9-12h-6z"/></svg></div>
+        <h3>Starter Pack</h3>
+        <p class="pkg-sub">Perfect for startups</p>
+        <ul class="pkg-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>1-Page Website</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>5 Social Media Posts</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Basic Branding</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>1 Month Support</li>
+        </ul>
+        <div class="pkg-price"><span class="amt"><sup>₹</sup>4,999</span><span class="onwards">Onwards</span></div>
+        <a href="#contact" class="btn btn-ghost">Choose Starter</a>
+      </div>
+
+      <div class="pkg-card featured reveal">
+        <span class="pkg-ribbon">Most Popular</span>
+        <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11 13 15 21 7M21 7h-6M21 7v6"/></svg></div>
+        <h3>Growth Pack</h3>
+        <p class="pkg-sub">For growing businesses</p>
+        <ul class="pkg-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Up to 5 Pages Website</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>12 Social Media Posts</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Branding Kit</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Content Creation</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>1 Month Support</li>
+        </ul>
+        <div class="pkg-price"><span class="amt"><sup>₹</sup>9,999</span><span class="onwards">Onwards</span></div>
+        <a href="#contact" class="btn btn-primary">Choose Growth</a>
+      </div>
+
+      <div class="pkg-card reveal">
+        <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9Z"/><path d="M2 9h20M9 3l3 6-3 12M15 3l-3 6 3 12"/></svg></div>
+        <h3>Premium Pack</h3>
+        <p class="pkg-sub">For serious growth</p>
+        <ul class="pkg-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Up to 10 Pages Website</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>20 Social Media Posts</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Branding + Strategy</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Content Creation</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>1 Month Support</li>
+        </ul>
+        <div class="pkg-price"><span class="amt"><sup>₹</sup>19,999</span><span class="onwards">Onwards</span></div>
+        <a href="#contact" class="btn btn-ghost">Choose Premium</a>
+      </div>
+
+      <div class="pkg-card custom reveal">
+        <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 12 5l9 12M6 13h12"/></svg></div>
+        <h3>Custom Solutions</h3>
+        <p class="pkg-sub" style="color:#8f89a8">Tailored for you</p>
+        <p>Need something unique? We'll design a custom plan built entirely around your goals and budget.</p>
+        <a href="#contact" class="btn btn-primary" style="margin-top:24px">Let's Build Something Amazing</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact reveal">
+      <div class="contact-grid">
+        <div>
+          <span class="eyebrow" style="color:#B79CF0">Get In Touch</span>
+          <h2 style="margin-top:14px">Let's build, grow and<br>bloom your digital future.</h2>
+          <p class="lede">Tell us a little about your business — we'll get back to you with the right plan.</p>
+
+          <div class="contact-list">
+            <a href="tel:+917389743567">
+              <div class="cico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg></div>
+              <div><div class="clabel">Call / WhatsApp</div><div class="cval">+91 73897 43567</div></div>
+            </a>
+            <a href="mailto:bytebloomdigitalstudio@gmail.com">
+              <div class="cico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg></div>
+              <div><div class="clabel">Email</div><div class="cval">bytebloomdigitalstudio@gmail.com</div></div>
+            </a>
+            <a href="https://instagram.com/Thebytebloomstudio" target="_blank" rel="noopener">
+              <div class="cico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></div>
+              <div><div class="clabel">Instagram</div><div class="cval">@Thebytebloomstudio</div></div>
+            </a>
+            <div>
+              <div class="cico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div><div class="clabel">Studio Address</div><div class="cval">68, Uday Vihar, Shahbuddin Baba Dargah Road,<br>Neemuch, Madhya Pradesh 458441</div></div>
+            </div>
+          </div>
+
+          <div class="contact-actions">
+            <a href="https://wa.me/917389743567" target="_blank" rel="noopener" class="btn btn-primary">Message on WhatsApp</a>
+            <a href="mailto:bytebloomdigitalstudio@gmail.com" class="btn" style="background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.16)">Send an Email</a>
+          </div>
+        </div>
+
+        <div class="map-frame">
+          <iframe src="https://maps.google.com/maps?q=Neemuch%2C%20Madhya%20Pradesh%20458441&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="ByteBloom Digital Studio location — Neemuch, Madhya Pradesh"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#top" class="brand">
+          <svg viewBox="0 0 64 64" width="30" height="30"><g fill="url(#lg1)">
+            <rect x="4" y="6" width="6" height="6" rx="1.5"/><rect x="12" y="6" width="6" height="6" rx="1.5" opacity=".6"/><rect x="4" y="14" width="6" height="6" rx="1.5" opacity=".6"/>
+            <path d="M22 8h16c8 0 13 4.5 13 11 0 4-2 7-5.5 8.5C49.5 29 53 32.5 53 38c0 7-5.5 12-14 12H22V8zm10 8v10h5c4 0 6-2 6-5s-2-5-6-5h-5zm0 18v10h6c4.5 0 7-2 7-5s-2.5-5-7-5h-6z"/>
+          </g></svg>
+          <span class="brand-text">Byte<b>Bloom</b> <span style="font-weight:400;color:var(--ink-soft);font-size:.85rem">Digital Studio</span></span>
+        </a>
+        <p>Let's build, grow and bloom your digital future — right here from Neemuch, Madhya Pradesh.</p>
+        <div class="socials" style="margin-top:20px">
+          <a href="https://instagram.com/Thebytebloomstudio" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
+          <a href="https://wa.me/917389743567" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+          <a href="mailto:bytebloomdigitalstudio@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Studio</h5>
+          <a href="#services">Services</a>
+          <a href="#packages">Packages</a>
+          <a href="#why">Why Us</a>
+          <a href="#process">Process</a>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <a href="tel:+917389743567">+91 73897 43567</a>
+          <a href="mailto:bytebloomdigitalstudio@gmail.com">bytebloomdigitalstudio@gmail.com</a>
+          <span style="display:block;font-size:.92rem;color:var(--ink-soft);max-width:220px">Neemuch, Madhya Pradesh 458441</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ByteBloom Digital Studio. All rights reserved.</span>
+      <span>Crafted with care in Neemuch, Madhya Pradesh.</span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+// ---- Nav scroll state ----
+const nav = document.getElementById('nav');
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 30);
+  backTop.classList.toggle('show', window.scrollY > 600);
+}, { passive: true });
+
+// ---- Mobile menu ----
+const hamburger = document.getElementById('hamburger');
+const mobilePanel = document.getElementById('mobilePanel');
+hamburger.addEventListener('click', () => {
+  const open = mobilePanel.classList.toggle('open');
+  hamburger.querySelectorAll('span')[0].style.transform = open ? 'translateY(7px) rotate(45deg)' : '';
+  hamburger.querySelectorAll('span')[1].style.opacity = open ? '0' : '1';
+  hamburger.querySelectorAll('span')[2].style.transform = open ? 'translateY(-7px) rotate(-45deg)' : '';
+});
+mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobilePanel.classList.remove('open');
+  hamburger.querySelectorAll('span').forEach(s => { s.style.transform=''; s.style.opacity='1'; });
+}));
+
+// ---- Back to top ----
+backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ---- Scroll reveal ----
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in-view');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.16, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal, .service-card, .why-item, .timeline').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
