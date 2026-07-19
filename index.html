@@ -290,13 +290,17 @@ section{padding:100px 0}
 .pkg-feats{margin-top:22px;display:flex;flex-direction:column;gap:11px;flex:1}
 .pkg-feats li{display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--ink-soft)}
 .pkg-feats svg{width:16px;height:16px;color:var(--violet);flex-shrink:0;margin-top:2px}
+.pkg-feats-compact{display:block;columns:2;column-gap:16px}
+.pkg-feats-compact li{font-size:.8rem;gap:7px;margin-bottom:10px;break-inside:avoid}
+.pkg-feats-compact svg{width:13px;height:13px;margin-top:3px}
+@media(max-width:480px){.pkg-feats-compact{columns:1}}
 .pkg-price{margin-top:26px;padding-top:22px;border-top:1px solid var(--border)}
 .pkg-price .amt{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.9rem}
 .pkg-price .amt sup{font-size:1rem;font-weight:600}
 .pkg-price .onwards{font-size:.72rem;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-left:4px}
 .pkg-card .btn{margin-top:20px;width:100%}
 
-.pkg-card.custom{background:var(--ink);color:#fff;border:none;justify-content:center}
+.pkg-card.custom{background:var(--ink);color:#fff;border:none;justify-content:flex-start}
 .pkg-card.custom .pkg-icon{background:var(--grad)}
 .pkg-card.custom .pkg-icon svg{color:#fff}
 .pkg-card.custom p{color:#C9C4DC;font-size:.92rem;margin-top:14px}
@@ -326,6 +330,21 @@ section{padding:100px 0}
 .contact-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
 .map-frame{border-radius:var(--radius-md);overflow:hidden;border:1px solid rgba(255,255,255,.12);height:100%;min-height:340px;position:relative}
 .map-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(.15) contrast(1.05)}
+
+.contact-form{margin-top:30px;display:flex;flex-direction:column;gap:16px}
+.form-row{display:flex;flex-direction:column;gap:6px}
+.form-row label{font-family:'Space Grotesk',sans-serif;font-size:.78rem;font-weight:600;color:#B8B2CC;text-transform:uppercase;letter-spacing:.05em}
+.form-row input,.form-row textarea{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:12px;
+  padding:13px 16px;color:#fff;font-family:'Inter',sans-serif;font-size:.95rem;resize:vertical;
+  transition:border-color .25s,background .25s;
+}
+.form-row input::placeholder,.form-row textarea::placeholder{color:#8f89a8}
+.form-row input:focus,.form-row textarea:focus{outline:none;border-color:var(--violet);background:rgba(255,255,255,.1)}
+.form-status{font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:600;min-height:20px;margin-top:-4px}
+.form-status.success{color:#6EE7A8}
+.form-status.error{color:#F87171}
+.form-status.sending{color:#C9C4DC}
 
 @media(max-width:840px){
   .contact{padding:44px 24px}
@@ -653,8 +672,23 @@ footer{padding:60px 0 34px}
         <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 12 5l9 12M6 13h12"/></svg></div>
         <h3>Custom Solutions</h3>
         <p class="pkg-sub" style="color:#8f89a8">Tailored for you</p>
-        <p>Need something unique? We'll design a custom plan built entirely around your goals and budget.</p>
-        <a href="#contact" class="btn btn-primary" style="margin-top:24px">Let's Build Something Amazing</a>
+        <p style="color:#C9C4DC;margin-top:10px">Need something beyond our standard packages? We build custom solutions around your exact goals — including:</p>
+        <ul class="pkg-feats pkg-feats-compact" style="margin-top:16px">
+          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Video Creation &amp; Editing</li>
+          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Image Creation &amp; Editing</li>
+          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Document Creation &amp; Editing</li>
+          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>WhatsApp &amp; Email Automation</li>
+          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>AI Solutions</li>
+          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Content Writing</li>
+          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Pamphlet Design</li>
+          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Banner Design</li>
+          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Social Media Management</li>
+          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Business Strategy &amp; Growth</li>
+          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Customer Management</li>
+        </ul>
+        <div class="pkg-price"><span class="amt" style="font-size:1.35rem">Contact for Pricing</span></div>
+        <p style="color:#C9C4DC;margin-top:6px;font-size:.85rem">Tell us what you need — we'll build a plan around your goals and budget.</p>
+        <a href="#contact" class="btn btn-primary" style="margin-top:20px">Let's Build Something Amazing</a>
       </div>
     </div>
   </div>
@@ -670,7 +704,34 @@ footer{padding:60px 0 34px}
           <h2 style="margin-top:14px">Let's build, grow and<br>bloom your digital future.</h2>
           <p class="lede">Tell us a little about your business — we'll get back to you with the right plan.</p>
 
-          <div class="contact-list reveal-stagger">
+          <form id="contactForm" class="contact-form" novalidate>
+            <input type="hidden" name="access_key" value= "f4c3a537-cfa9-4c2c-8a63-9ba561fd0a1a">
+            <input type="hidden" name="subject" value="New inquiry from ByteBloom website">
+            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
+            <div class="form-row">
+              <label for="cf-name">Name</label>
+              <input id="cf-name" type="text" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-row">
+              <label for="cf-contact">Phone or Email</label>
+              <input id="cf-contact" type="text" name="contact" placeholder="+91 XXXXX XXXXX or you@email.com" required>
+            </div>
+            <div class="form-row">
+              <label for="cf-message">What do you need?</label>
+              <textarea id="cf-message" name="message" rows="4" placeholder="Tell us about your business and what you're looking for..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" id="cf-submit" style="width:100%;justify-content:center">Send Message</button>
+            <p id="cf-status" class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <div>
+          <div class="map-frame">
+            <iframe src="https://maps.google.com/maps?q=Neemuch%2C%20Madhya%20Pradesh%20458441&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="ByteBloom Digital Studio location — Neemuch, Madhya Pradesh"></iframe>
+          </div>
+
+          <div class="contact-list reveal-stagger" style="margin-top:26px">
             <a href="tel:+917389743567">
               <div class="cico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg></div>
               <div><div class="clabel">Call / WhatsApp</div><div class="cval">+91 73897 43567</div></div>
@@ -691,12 +752,7 @@ footer{padding:60px 0 34px}
 
           <div class="contact-actions">
             <a href="https://wa.me/917389743567" target="_blank" rel="noopener" class="btn btn-primary">Message on WhatsApp</a>
-            <a href="mailto:bytebloomdigitalstudio@gmail.com" class="btn" style="background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.16)">Send an Email</a>
           </div>
-        </div>
-
-        <div class="map-frame">
-          <iframe src="https://maps.google.com/maps?q=Neemuch%2C%20Madhya%20Pradesh%20458441&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="ByteBloom Digital Studio location — Neemuch, Madhya Pradesh"></iframe>
         </div>
       </div>
     </div>
@@ -774,6 +830,45 @@ mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () =>
 
 // ---- Back to top ----
 backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ---- Contact form submission (Web3Forms — no backend needed) ----
+const cfForm = document.getElementById('contactForm');
+const cfStatus = document.getElementById('cf-status');
+const cfSubmit = document.getElementById('cf-submit');
+if (cfForm) {
+  cfForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const key = cfForm.querySelector('[name="access_key"]').value;
+    if (!key || key === 'PASTE_YOUR_WEB3FORMS_ACCESS_KEY_HERE') {
+      cfStatus.textContent = 'Form isn\'t connected yet — message the studio directly via WhatsApp below.';
+      cfStatus.className = 'form-status error';
+      return;
+    }
+    cfSubmit.disabled = true;
+    cfStatus.textContent = 'Sending...';
+    cfStatus.className = 'form-status sending';
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(cfForm))),
+      });
+      const data = await res.json();
+      if (data.success) {
+        cfStatus.textContent = "Thanks! We've received your message and will get back to you shortly.";
+        cfStatus.className = 'form-status success';
+        cfForm.reset();
+      } else {
+        throw new Error(data.message || 'Something went wrong');
+      }
+    } catch (err) {
+      cfStatus.textContent = 'Could not send — please try WhatsApp or email instead.';
+      cfStatus.className = 'form-status error';
+    } finally {
+      cfSubmit.disabled = false;
+    }
+  });
+}
 
 // ---- Scroll reveal ----
 const io = new IntersectionObserver((entries) => {
