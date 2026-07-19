@@ -94,6 +94,8 @@ h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:600;line-height:1.08;letter
 }
 
 /* ============ NAV ============ */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--grad);z-index:1200;transition:width .1s linear}
+
 .nav{
   position:fixed;top:0;left:0;right:0;z-index:1000;
   padding:18px 0;
@@ -140,7 +142,8 @@ h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:600;line-height:1.08;letter
 }
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
 .hero-copy h1{font-size:clamp(2.5rem,5.6vw,4.3rem);margin-top:18px}
-.hero-copy h1 em{font-style:italic;font-weight:500;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-copy h1 em{font-style:italic;font-weight:500;background:linear-gradient(90deg,var(--violet),var(--blue),var(--pink),var(--violet));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 6s ease-in-out infinite}
+@keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 .hero-copy p.lede{margin-top:22px;font-size:1.08rem;color:var(--ink-soft);max-width:520px}
 .hero-actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:36px}
 .hero-tags{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:44px}
@@ -225,6 +228,14 @@ section{padding:100px 0}
 .service-bar i{display:block;height:100%;width:0;background:var(--grad);border-radius:4px;transition:width 1.2s var(--ease)}
 .service-card.in-view .service-bar i{width:var(--fill)}
 
+.service-card--ai{}
+.service-icon--pulse{position:relative}
+.service-icon--pulse::after{
+  content:"";position:absolute;inset:-6px;border-radius:20px;border:1.5px solid var(--violet);
+  opacity:0;animation:iconPulse 2.4s ease-out infinite;
+}
+@keyframes iconPulse{0%{opacity:.6;transform:scale(.9)}100%{opacity:0;transform:scale(1.35)}}
+
 /* ============ WHY / INFOGRAPHIC ============ */
 .why{background:var(--bg-alt);position:relative;overflow:hidden}
 .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
@@ -300,11 +311,7 @@ section{padding:100px 0}
 .pkg-price .onwards{font-size:.72rem;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-left:4px}
 .pkg-card .btn{margin-top:20px;width:100%}
 
-.pkg-card.custom{background:var(--ink);color:#fff;border:none;justify-content:flex-start}
-.pkg-card.custom .pkg-icon{background:var(--grad)}
-.pkg-card.custom .pkg-icon svg{color:#fff}
-.pkg-card.custom p{color:#C9C4DC;font-size:.92rem;margin-top:14px}
-.pkg-card.custom h3{color:#fff}
+.pkg-card.custom{background:var(--card);border:1px solid var(--border)}
 
 /* ============ CONTACT ============ */
 .contact{
@@ -382,6 +389,8 @@ footer{padding:60px 0 34px}
 <body>
 
 <!-- ============ NAV ============ -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
 <nav class="nav" id="nav">
   <div class="container nav-inner">
     <a href="#top" class="brand">
@@ -534,9 +543,9 @@ footer{padding:60px 0 34px}
         <div class="service-bar"><i></i></div>
       </div>
 
-      <div class="service-card reveal" style="--fill:87%">
+      <div class="service-card service-card--ai reveal" style="--fill:87%">
         <span class="service-num">05</span>
-        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div>
+        <div class="service-icon service-icon--pulse"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div>
         <h3>AI Solutions &amp; Automation</h3>
         <p>AI tools, chatbots and smart automation that save time and help your business grow faster.</p>
         <div class="service-bar"><i></i></div>
@@ -671,23 +680,23 @@ footer{padding:60px 0 34px}
       <div class="pkg-card custom reveal">
         <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 12 5l9 12M6 13h12"/></svg></div>
         <h3>Custom Solutions</h3>
-        <p class="pkg-sub" style="color:#8f89a8">Tailored for you</p>
-        <p style="color:#C9C4DC;margin-top:10px">Need something beyond our standard packages? We build custom solutions around your exact goals — including:</p>
+        <p class="pkg-sub">Tailored for you</p>
+        <p style="color:var(--ink-soft);margin-top:10px;font-size:.92rem">Need something beyond our standard packages? We build custom solutions around your exact goals — including:</p>
         <ul class="pkg-feats pkg-feats-compact" style="margin-top:16px">
-          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Video Creation &amp; Editing</li>
-          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Image Creation &amp; Editing</li>
-          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Document Creation &amp; Editing</li>
-          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>WhatsApp &amp; Email Automation</li>
-          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>AI Solutions</li>
-          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Content Writing</li>
-          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Pamphlet Design</li>
-          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Banner Design</li>
-          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Social Media Management</li>
-          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Business Strategy &amp; Growth</li>
-          <li style="color:#E8E4F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Customer Management</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Video Creation &amp; Editing</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Image Creation &amp; Editing</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Document Creation &amp; Editing</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>WhatsApp &amp; Email Automation</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>AI Solutions</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Content Writing</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Pamphlet Design</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Banner Design</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Social Media Management</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Business Strategy &amp; Growth</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Customer Management</li>
         </ul>
         <div class="pkg-price"><span class="amt" style="font-size:1.35rem">Contact for Pricing</span></div>
-        <p style="color:#C9C4DC;margin-top:6px;font-size:.85rem">Tell us what you need — we'll build a plan around your goals and budget.</p>
+        <p style="color:var(--ink-soft);margin-top:6px;font-size:.85rem">Tell us what you need — we'll build a plan around your goals and budget.</p>
         <a href="#contact" class="btn btn-primary" style="margin-top:20px">Let's Build Something Amazing</a>
       </div>
     </div>
@@ -705,7 +714,7 @@ footer{padding:60px 0 34px}
           <p class="lede">Tell us a little about your business — we'll get back to you with the right plan.</p>
 
           <form id="contactForm" class="contact-form" novalidate>
-            <input type="hidden" name="access_key" value= "f4c3a537-cfa9-4c2c-8a63-9ba561fd0a1a">
+            <input type="hidden" name="access_key" value="f4c3a537-cfa9-4c2c-8a63-9ba561fd0a1a">
             <input type="hidden" name="subject" value="New inquiry from ByteBloom website">
             <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
@@ -738,7 +747,7 @@ footer{padding:60px 0 34px}
             </a>
             <a href="mailto:bytebloomdigitalstudio@gmail.com">
               <div class="cico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg></div>
-              <div><div class="clabel">Email</div><div class="cval">bytebloomdigitalstudio@gmail.com</div></div>
+              <div><div class="clabel">Email</div><div class="cval">bytebloomdigitalstudio@<wbr>gmail.com</div></div>
             </a>
             <a href="https://instagram.com/Thebytebloomstudio" target="_blank" rel="noopener">
               <div class="cico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></div>
@@ -789,7 +798,7 @@ footer{padding:60px 0 34px}
         <div class="footer-col">
           <h5>Contact</h5>
           <a href="tel:+917389743567">+91 73897 43567</a>
-          <a href="mailto:bytebloomdigitalstudio@gmail.com">bytebloomdigitalstudio@gmail.com</a>
+          <a href="mailto:bytebloomdigitalstudio@gmail.com">bytebloomdigitalstudio@<wbr>gmail.com</a>
           <span style="display:block;font-size:.92rem;color:var(--ink-soft);max-width:220px">Neemuch, Madhya Pradesh 458441</span>
         </div>
       </div>
@@ -809,9 +818,13 @@ footer{padding:60px 0 34px}
 // ---- Nav scroll state ----
 const nav = document.getElementById('nav');
 const backTop = document.getElementById('backTop');
+const scrollProgress = document.getElementById('scrollProgress');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 30);
   backTop.classList.toggle('show', window.scrollY > 600);
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docH > 0 ? (window.scrollY / docH) * 100 : 0;
+  scrollProgress.style.width = pct + '%';
 }, { passive: true });
 
 // ---- Mobile menu ----
@@ -881,6 +894,20 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.16, rootMargin: '0px 0px -60px 0px' });
 
 document.querySelectorAll('.reveal, .reveal-stagger, .service-card, .why-item, .timeline').forEach(el => io.observe(el));
+
+// ---- Subtle 3D tilt on service cards (fine-pointer devices only) ----
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  document.querySelectorAll('.service-card').forEach(card => {
+    card.style.transformStyle = 'preserve-3d';
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = `translateY(-8px) rotateX(${(-py*6).toFixed(2)}deg) rotateY(${(px*6).toFixed(2)}deg)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+}
 </script>
 </body>
 </html>
