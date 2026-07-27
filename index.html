@@ -108,7 +108,9 @@ h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:600;line-height:1.08;letter
 .brand svg{width:34px;height:34px;flex-shrink:0}
 .brand-text{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.12rem;letter-spacing:-.01em}
 .brand-text b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links{display:flex;align-items:center;gap:22px;flex-wrap:nowrap}
+.nav-links a{white-space:nowrap}
+@media(max-width:1150px){.nav-links{gap:15px}.nav-links a{font-size:.82rem}}
 .nav-links a{font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:500;color:var(--ink-soft);position:relative;padding:4px 0;transition:color .25s}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--grad);transition:width .3s var(--ease)}
 .nav-links a:hover{color:var(--ink)}
@@ -294,6 +296,9 @@ section{padding:100px 0}
 .packages-grid{margin-top:56px;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:stretch}
 @media(max-width:1024px){.packages-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.packages-grid{grid-template-columns:1fr}}
+.packages-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+@media(max-width:900px){.packages-grid-3{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.packages-grid-3{grid-template-columns:1fr}}
 .pkg-card{
   background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);
   padding:34px 28px;display:flex;flex-direction:column;position:relative;
@@ -392,6 +397,56 @@ footer{padding:60px 0 34px}
 }
 .back-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
 .back-top svg{width:20px;height:20px;color:#fff}
+
+/* ============ A LA CARTE TABS ============ */
+.tabs-bar{display:flex;flex-wrap:wrap;gap:10px;margin-top:44px}
+.tab-btn{
+  font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.86rem;
+  padding:11px 20px;border-radius:100px;border:1.5px solid var(--border);background:var(--card);
+  color:var(--ink-soft);transition:all .3s var(--ease);cursor:pointer;
+}
+.tab-btn:hover{border-color:var(--violet);color:var(--ink)}
+.tab-btn.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:var(--shadow-sm)}
+.tab-panel{display:none;margin-top:40px}
+.tab-panel.active{display:block;animation:fadeInPanel .5s var(--ease)}
+@keyframes fadeInPanel{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.tab-note{margin-top:28px;padding:18px 22px;background:var(--bg-alt);border-radius:var(--radius-md);
+  font-size:.88rem;color:var(--ink-soft);border:1px solid var(--border)}
+.tab-note b{color:var(--ink)}
+
+/* ============ REFERRAL ============ */
+.referral-card{
+  background:var(--ink);border-radius:var(--radius-lg);padding:52px 44px;color:#fff;position:relative;overflow:hidden;
+}
+.referral-card::before{content:"";position:absolute;top:-35%;right:-15%;width:65%;height:80%;background:var(--grad);filter:blur(100px);opacity:.4;border-radius:50%}
+@media(max-width:640px){.referral-card{padding:36px 24px}}
+.referral-inner{position:relative;z-index:1}
+.referral-card h2{color:#fff;font-size:clamp(1.9rem,4vw,2.6rem);max-width:640px}
+.referral-card p.lede{color:#C9C4DC;margin-top:16px;max-width:560px;font-size:1.02rem}
+.referral-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+  padding:8px 18px;border-radius:100px;font-family:'Space Grotesk',sans-serif;font-size:.78rem;font-weight:700;color:#fff;margin-bottom:20px}
+.referral-grid{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:760px){.referral-grid{grid-template-columns:1fr}}
+.referral-example{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-md);padding:22px}
+.referral-example .rex-label{font-family:'Space Grotesk',sans-serif;font-size:.78rem;color:#B8B2CC;text-transform:uppercase;letter-spacing:.06em}
+.referral-example .rex-amt{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;margin-top:8px}
+.referral-example .rex-reward{color:#6EE7A8;font-weight:600;font-size:.95rem;margin-top:6px}
+.referral-benefits{margin-top:32px;display:flex;flex-wrap:wrap;gap:14px}
+.referral-pill{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  padding:9px 16px;border-radius:100px;font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:600;color:#E8E4F5}
+.referral-pill svg{width:14px;height:14px;color:#B79CF0;flex-shrink:0}
+.referral-card .btn{margin-top:32px}
+
+/* ============ PAYMENT POLICY ============ */
+.payment-grid{margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:900px){.payment-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.payment-grid{grid-template-columns:1fr}}
+.payment-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);padding:26px}
+.payment-card .pc-icon{width:44px;height:44px;border-radius:12px;background:var(--grad-soft);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.payment-card .pc-icon svg{width:20px;height:20px;color:var(--violet)}
+.payment-card h4{font-size:1.05rem;font-family:'Fraunces',serif;font-weight:600}
+.payment-card p{margin-top:8px;color:var(--ink-soft);font-size:.88rem;line-height:1.55}
+.payment-summary{margin-top:20px}
 </style>
 </head>
 <body>
@@ -415,6 +470,8 @@ footer{padding:60px 0 34px}
     <div class="nav-links">
       <a href="#services">Services</a>
       <a href="#packages">Packages</a>
+      <a href="#individual">A La Carte</a>
+      <a href="#referral">Referral</a>
       <a href="#why">Why Us</a>
       <a href="#process">Process</a>
       <a href="#contact">Contact</a>
@@ -432,6 +489,8 @@ footer{padding:60px 0 34px}
 <div class="mobile-panel" id="mobilePanel">
   <a href="#services">Services</a>
   <a href="#packages">Packages</a>
+  <a href="#individual">A La Carte</a>
+  <a href="#referral">Referral</a>
   <a href="#why">Why Us</a>
   <a href="#process">Process</a>
   <a href="#contact">Contact</a>
@@ -638,7 +697,6 @@ footer{padding:60px 0 34px}
     <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="12" rx="2"/></svg>Content Creation</span>
     <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3"/></svg>AI Solutions &amp; Automation</span>
     <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a2 2 0 0 0 2 2h1l7 4V5l-7 4H5a2 2 0 0 0-2 2Z"/></svg>Digital Marketing</span>
-    <!-- duplicate for seamless loop -->
     <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 3 12l5 9M16 3l5 9-5 9"/></svg>Website Development</span>
     <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg>Branding &amp; Design</span>
     <span class="marquee-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="3"/></svg>Social Media Management</span>
@@ -713,13 +771,13 @@ footer{padding:60px 0 34px}
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Image Creation &amp; Editing</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Content Creation &amp; Editing</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>WhatsApp &amp; Email Automation</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>AI Solutions & Website/App Development</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Content Writing & Editing</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Pamphlet ,Visiting Card,Invitation Card Design</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Banner & Logo Design</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>AI Solutions &amp; Website/App Development</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Content Writing &amp; Editing</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Pamphlet, Visiting Card, Invitation Card Design</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Banner &amp; Logo Design</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Social Media Management</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Business Strategy &amp; Growth</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Customer Management & Support</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Customer Management &amp; Support</li>
         </ul>
         <div class="pkg-price"><span class="amt" style="font-size:1.35rem">Contact for Pricing</span></div>
         <p style="color:var(--ink-soft);margin-top:6px;font-size:.85rem">Tell us what you need — we'll build a plan around your goals and budget.</p>
@@ -729,7 +787,403 @@ footer{padding:60px 0 34px}
   </div>
 </section>
 
+<!-- ============ A LA CARTE / INDIVIDUAL SERVICES ============ -->
+<section id="individual">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">A La Carte</span>
+      <h2>Just need one thing?<br>Pick a single service.</h2>
+      <p>Not every business needs a full package. These are stand-alone options, priced and scoped on their own.</p>
+    </div>
+
+    <div class="tabs-bar reveal">
+      <button class="tab-btn active" data-tab="logo">Logo Design</button>
+      <button class="tab-btn" data-tab="website">Website Only</button>
+      <button class="tab-btn" data-tab="qr">Digital QR Menu</button>
+      <button class="tab-btn" data-tab="pamphlet">Pamphlets &amp; Festival Posters</button>
+      <button class="tab-btn" data-tab="aivideo">AI Video Branding</button>
+    </div>
+
+    <!-- LOGO -->
+    <div class="tab-panel active" data-panel="logo">
+      <div class="packages-grid-3">
+        <div class="pkg-card">
+          <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg></div>
+          <h3>Basic Logo</h3>
+          <p class="pkg-sub">For a quick, clean start</p>
+          <ul class="pkg-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>2 Logo Concepts</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>PNG + JPG Files</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Transparent Background</li>
+          </ul>
+          <div class="pkg-price"><span class="amt"><sup>₹</sup>999</span></div>
+          <a href="#contact" class="btn btn-ghost">Choose This</a>
+        </div>
+        <div class="pkg-card featured">
+          <span class="pkg-ribbon">Most Popular</span>
+          <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg></div>
+          <h3>Professional Logo</h3>
+          <p class="pkg-sub">For a brand that means business</p>
+          <ul class="pkg-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>4 Logo Concepts</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>PNG, JPG, SVG &amp; PDF</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Color Variations</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Brand Colors Defined</li>
+          </ul>
+          <div class="pkg-price"><span class="amt"><sup>₹</sup>2,999</span></div>
+          <a href="#contact" class="btn btn-primary">Choose This</a>
+        </div>
+        <div class="pkg-card">
+          <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9Z"/></svg></div>
+          <h3>Premium Brand Identity</h3>
+          <p class="pkg-sub">A complete brand system</p>
+          <ul class="pkg-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Premium Logo</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Brand Guidelines</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Business Card + Letterhead</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Color Palette &amp; Typography Guide</li>
+          </ul>
+          <div class="pkg-price"><span class="amt"><sup>₹</sup>5,999</span></div>
+          <a href="#contact" class="btn btn-ghost">Choose This</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEBSITE ONLY -->
+    <div class="tab-panel" data-panel="website">
+      <div class="packages-grid-3">
+        <div class="pkg-card">
+          <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 3 12l5 9M16 3l5 9-5 9"/></svg></div>
+          <h3>Basic Website</h3>
+          <p class="pkg-sub">Ideal for shops &amp; small businesses</p>
+          <ul class="pkg-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>5 Pages</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Mobile Responsive</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Contact Form + WhatsApp Button</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Google Map + Basic SEO</li>
+          </ul>
+          <div class="pkg-price"><span class="amt"><sup>₹</sup>4,999</span></div>
+          <a href="#contact" class="btn btn-ghost">Choose This</a>
+        </div>
+        <div class="pkg-card featured">
+          <span class="pkg-ribbon">Most Popular</span>
+          <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 3 12l5 9M16 3l5 9-5 9"/></svg></div>
+          <h3>Business Website</h3>
+          <p class="pkg-sub">A stronger online presence</p>
+          <ul class="pkg-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Up to 10 Pages, Premium Design</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Gallery, Services &amp; Testimonials</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Google Analytics + SEO</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Speed Optimization</li>
+          </ul>
+          <div class="pkg-price"><span class="amt"><sup>₹</sup>9,999</span></div>
+          <a href="#contact" class="btn btn-primary">Choose This</a>
+        </div>
+        <div class="pkg-card">
+          <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9Z"/></svg></div>
+          <h3>Premium Business Website</h3>
+          <p class="pkg-sub">Fully custom, no limits</p>
+          <ul class="pkg-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Fully Custom, Unlimited Pages</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Booking Form + Blog</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Advanced SEO</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Admin Panel (Optional) + Animations</li>
+          </ul>
+          <div class="pkg-price"><span class="amt"><sup>₹</sup>19,999</span></div>
+          <a href="#contact" class="btn btn-ghost">Choose This</a>
+        </div>
+      </div>
+      <p class="tab-note">This is a <b>website-only</b> service — no social posts or branding included. Need those too? Check the bundled <a href="#packages" style="color:var(--violet);font-weight:600">Packages</a> above.</p>
+    </div>
+
+    <!-- QR MENU -->
+    <div class="tab-panel" data-panel="qr">
+      <div class="packages-grid-3">
+        <div class="pkg-card">
+          <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM19 14h2v2h-2zM14 19h2v2h-2zM19 19h2v2h-2z"/></svg></div>
+          <h3>Starter QR Menu</h3>
+          <p class="pkg-sub">Get online in days</p>
+          <ul class="pkg-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Custom Digital QR Menu</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Unlimited Categories</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Mobile Responsive + QR Code</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Delivery in 2–3 Days</li>
+          </ul>
+          <div class="pkg-price"><span class="amt"><sup>₹</sup>1,999</span></div>
+          <a href="#contact" class="btn btn-ghost">Choose This</a>
+        </div>
+        <div class="pkg-card featured">
+          <span class="pkg-ribbon">Most Popular</span>
+          <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM19 14h2v2h-2zM14 19h2v2h-2zM19 19h2v2h-2z"/></svg></div>
+          <h3>Professional QR Menu</h3>
+          <p class="pkg-sub">For restaurants ready to impress</p>
+          <ul class="pkg-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Everything in Starter</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Premium Theme + Food Images</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>QR Stand Design + Google Review QR</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Unlimited Updates for 1 Month</li>
+          </ul>
+          <div class="pkg-price"><span class="amt"><sup>₹</sup>3,999</span></div>
+          <a href="#contact" class="btn btn-primary">Choose This</a>
+        </div>
+        <div class="pkg-card">
+          <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM19 14h2v2h-2zM14 19h2v2h-2zM19 19h2v2h-2z"/></svg></div>
+          <h3>Premium QR Menu</h3>
+          <p class="pkg-sub">The full experience</p>
+          <ul class="pkg-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Premium UI + Restaurant Branding</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>WhatsApp Ordering Button</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Multi-language Menu, Animated Design</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>3 Months Updates + Priority Support</li>
+          </ul>
+          <div class="pkg-price"><span class="amt"><sup>₹</sup>6,999</span></div>
+          <a href="#contact" class="btn btn-ghost">Choose This</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAMPHLET / FESTIVAL -->
+    <div class="tab-panel" data-panel="pamphlet">
+      <div class="packages-grid">
+        <div class="pkg-card">
+          <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></div>
+          <h3>Basic Design</h3>
+          <p class="pkg-sub">One-off poster</p>
+          <ul class="pkg-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>1 Social Media Poster</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>HD Quality</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Business Branding</li>
+          </ul>
+          <div class="pkg-price"><span class="amt"><sup>₹</sup>399</span></div>
+          <a href="#contact" class="btn btn-ghost">Choose This</a>
+        </div>
+        <div class="pkg-card">
+          <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></div>
+          <h3>Standard Package</h3>
+          <p class="pkg-sub">For one occasion</p>
+          <ul class="pkg-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>3 Festival Posters</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Instagram/Facebook Ready</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Premium Typography</li>
+          </ul>
+          <div class="pkg-price"><span class="amt"><sup>₹</sup>999</span></div>
+          <a href="#contact" class="btn btn-ghost">Choose This</a>
+        </div>
+        <div class="pkg-card featured">
+          <span class="pkg-ribbon">Most Popular</span>
+          <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></div>
+          <h3>Premium Package</h3>
+          <p class="pkg-sub">Go all-out for the festival</p>
+          <ul class="pkg-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>8 Festival Posters + Story Versions</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Print Flyer Included</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Premium Mockups</li>
+          </ul>
+          <div class="pkg-price"><span class="amt"><sup>₹</sup>1,999</span></div>
+          <a href="#contact" class="btn btn-primary">Choose This</a>
+        </div>
+        <div class="pkg-card">
+          <div class="pkg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <h3>Monthly Marketing Pack</h3>
+          <p class="pkg-sub">Never run out of content</p>
+          <ul class="pkg-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>20 Designs a Month</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Festival, Sale &amp; Offer Posts</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Product Promotions + Stories</li>
+          </ul>
+          <div class="pkg-price"><span class="amt" style="font-size:1.5rem">₹4,999</span><span class="onwards">/ month</span></div>
+          <a href="#contact" class="btn btn-ghost">Choose This</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI VIDEO -->
+    <div class="tab-panel" data-panel="aivideo">
+      <div class="packages-grid">
+        <div class="pkg-card">
+          <div class="pkg-icon service-icon--pulse" style="position:relative"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="M17 10l4-2v8l-4-2"/></svg></div>
+          <h3>Basic AI Video</h3>
+          <p class="pkg-sub">Perfect for social promos</p>
+          <ul class="pkg-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>15–20 Second Video, HD 1080p</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Background Music + Branding</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>1 Free Revision, 2–3 Day Delivery</li>
+          </ul>
+          <div class="pkg-price"><span class="amt"><sup>₹</sup>999</span></div>
+          <a href="#contact" class="btn btn-ghost">Choose This</a>
+        </div>
+        <div class="pkg-card">
+          <div class="pkg-icon service-icon--pulse" style="position:relative"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="M17 10l4-2v8l-4-2"/></svg></div>
+          <h3>Standard AI Video</h3>
+          <p class="pkg-sub">For product launches &amp; offers</p>
+          <ul class="pkg-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>30–45 Seconds, Premium Visuals</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Motion Graphics + Logo Integration</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>2 Revisions, 3–5 Day Delivery</li>
+          </ul>
+          <div class="pkg-price"><span class="amt"><sup>₹</sup>2,499</span></div>
+          <a href="#contact" class="btn btn-ghost">Choose This</a>
+        </div>
+        <div class="pkg-card featured">
+          <span class="pkg-ribbon">Most Popular</span>
+          <div class="pkg-icon service-icon--pulse" style="position:relative"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="M17 10l4-2v8l-4-2"/></svg></div>
+          <h3>Premium AI Video</h3>
+          <p class="pkg-sub">Make a strong impression</p>
+          <ul class="pkg-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>45–60 Sec Cinematic AI Video</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Pro Transitions + Text Animation</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>9:16 &amp; 16:9 Versions, 3 Revisions</li>
+          </ul>
+          <div class="pkg-price"><span class="amt"><sup>₹</sup>4,999</span></div>
+          <a href="#contact" class="btn btn-primary">Choose This</a>
+        </div>
+        <div class="pkg-card">
+          <div class="pkg-icon service-icon--pulse" style="position:relative"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9Z"/></svg></div>
+          <h3>Festival AI Video Pack</h3>
+          <p class="pkg-sub">10 videos, every major occasion</p>
+          <ul class="pkg-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Diwali, Raksha Bandhan, Navratri &amp; more</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>20–30 Sec Each, Branding + Logo</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>HD, Social Media Ready</li>
+          </ul>
+          <div class="pkg-price"><span class="amt"><sup>₹</sup>7,999</span></div>
+          <a href="#contact" class="btn btn-ghost">Choose This</a>
+        </div>
+        <div class="pkg-card">
+          <div class="pkg-icon service-icon--pulse" style="position:relative"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <h3>Monthly AI Content Pack</h3>
+          <p class="pkg-sub">For businesses that post often</p>
+          <ul class="pkg-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>8 AI Videos + 10 Posters / Month</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Festival &amp; Seasonal Content</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Priority Support</li>
+          </ul>
+          <div class="pkg-price"><span class="amt" style="font-size:1.5rem">₹9,999</span><span class="onwards">/ month</span></div>
+          <a href="#contact" class="btn btn-ghost">Choose This</a>
+        </div>
+      </div>
+      <p class="tab-note">Delivered as: <b>MP4 (Full HD 1080p)</b> · Instagram Reels (9:16) · Facebook &amp; WhatsApp Ready · YouTube Compatible (16:9)</p>
+    </div>
+
+    <p class="tab-note" style="margin-top:32px">
+      <b>Monthly Service Charges</b> — Website Maintenance ₹999/mo · QR Menu Updates ₹499/mo ·
+      Festival Design Subscription ₹4,999/mo · Website + QR Menu Support ₹1,499/mo
+    </p>
+  </div>
+</section>
+
+<!-- ============ REFERRAL PROGRAM ============ -->
+<section id="referral">
+  <div class="container">
+    <div class="referral-card reveal">
+      <div class="referral-inner">
+        <span class="referral-badge">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Refer &amp; Earn
+        </span>
+        <h2>You earn. Your friend saves.<br>Everybody wins.</h2>
+        <p class="lede">Know a business that needs a website, QR menu, logo, or promotional design? Refer them to ByteBloom — you earn <b style="color:#fff">10% of the project value (up to ₹2,000)</b> once their payment is complete, and they get <b style="color:#fff">10% off their first order (up to ₹1,000)</b>.</p>
+
+        <div class="referral-grid">
+          <div class="referral-example">
+            <div class="rex-label">Website (₹9,999)</div>
+            <div class="rex-amt">You Earn</div>
+            <div class="rex-reward">₹999 Cashback / Credit</div>
+          </div>
+          <div class="referral-example">
+            <div class="rex-label">QR Menu (₹3,999)</div>
+            <div class="rex-amt">You Earn</div>
+            <div class="rex-reward">₹399 Cashback / Credit</div>
+          </div>
+          <div class="referral-example">
+            <div class="rex-label">Branding Pack (₹14,999)</div>
+            <div class="rex-amt">You Earn</div>
+            <div class="rex-reward">₹1,499 Cashback / Credit</div>
+          </div>
+        </div>
+
+        <div class="referral-benefits">
+          <span class="referral-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Valid for new customers only</span>
+          <span class="referral-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Reward issued after payment completes</span>
+          <span class="referral-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Multiple referrals allowed</span>
+          <span class="referral-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Redeemable as cash or service credit</span>
+        </div>
+
+        <a href="#contact" class="btn btn-primary">Refer a Business</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PAYMENT POLICY ============ -->
+<section id="payment" class="why" style="background:var(--bg)">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Payment Policy</span>
+      <h2>Simple, transparent terms.<br>No surprises.</h2>
+      <p>The same payment structure applies to every project, big or small.</p>
+    </div>
+
+    <div class="payment-grid">
+      <div class="payment-card reveal">
+        <div class="pc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h4>Standard Terms</h4>
+        <p>50% advance payment to confirm the project, and 50% final payment before delivery or handover.</p>
+      </div>
+      <div class="payment-card reveal">
+        <div class="pc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></div>
+        <h4>Small Projects (Under ₹2,000)</h4>
+        <p>100% advance required — logo design, festival posters, pamphlets, and QR menu updates.</p>
+      </div>
+      <div class="payment-card reveal">
+        <div class="pc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 3 12l5 9M16 3l5 9-5 9"/></svg></div>
+        <h4>Website &amp; QR Menu Projects</h4>
+        <p>50% advance before work begins, 50% before the site goes live or the QR menu is handed over.</p>
+      </div>
+      <div class="payment-card reveal">
+        <div class="pc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
+        <h4>Monthly Services</h4>
+        <p>All monthly subscriptions are payable 100% in advance before the start of each billing cycle.</p>
+      </div>
+      <div class="payment-card reveal">
+        <div class="pc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3.5-7.1M21 4v5h-5"/></svg></div>
+        <h4>Additional Revisions</h4>
+        <p>Each package includes a set number of revisions. Changes beyond the agreed scope may incur extra charges.</p>
+      </div>
+      <div class="payment-card reveal">
+        <div class="pc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg></div>
+        <h4>Cancellation Policy</h4>
+        <p>Advance payments are non-refundable once work has started. Cancelling before work begins may allow a partial refund, minus any processing charges.</p>
+      </div>
+    </div>
+
+    <div class="why-list payment-summary reveal-stagger">
+      <div class="why-item reveal">
+        <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <p>50% advance to start the project</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <p>50% before final delivery</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <p>Projects under ₹2,000 require 100% advance</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <p>Monthly plans are payable in advance</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <p>Advance payment is non-refundable once work has started</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ CONTACT ============ -->
+
 <section id="contact">
   <div class="container">
     <div class="contact reveal">
@@ -818,6 +1272,9 @@ footer{padding:60px 0 34px}
           <h5>Studio</h5>
           <a href="#services">Services</a>
           <a href="#packages">Packages</a>
+          <a href="#individual">A La Carte</a>
+          <a href="#referral">Referral Program</a>
+          <a href="#payment">Payment Policy</a>
           <a href="#why">Why Us</a>
           <a href="#process">Process</a>
         </div>
@@ -920,6 +1377,17 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.16, rootMargin: '0px 0px -60px 0px' });
 
 document.querySelectorAll('.reveal, .reveal-stagger, .service-card, .why-item, .timeline').forEach(el => io.observe(el));
+
+// ---- A La Carte tab switching ----
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelector(`.tab-panel[data-panel="${target}"]`).classList.add('active');
+  });
+});
 
 // ---- Subtle 3D tilt on service cards (fine-pointer devices only) ----
 if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
